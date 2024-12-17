@@ -1,0 +1,76 @@
+name: pw test
+on:
+  push:  
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs: 
+  test: 
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Instal deps
+        run: npm ci
+      
+      - name: Install PW
+        run: npx playwright install --with-deps
+        
+      - name: Run PW tests
+        run: npx playwright test
+
+      - name: Upload PW results  
+        uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with: 
+          name: test-results
+          path: test-results
+          retention-days: 10
+
+      - name: Upload Allure results      
+        uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with: 
+          name: allure-results
+          path: allure-results
+          retention-days: 10
+          
+      - uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with: 
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure report    
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        continue-on-error: true
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 10
+          
+      - name: Deploy Allure report
+        if: always()
+        continue-on-error: true
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          
+        
