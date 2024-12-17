@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2932","Кнопка авторизации перекрывает футер","firefox","Tue Dec 17 11:14:50 GMT 2024","passed","Tue Dec 17 11:14:53 GMT 2024","Академия багов","example.spec.js","",""
+"","13338","Страница перестаёт отвечать при клике на количество результатов","firefox","Tue Dec 17 11:14:23 GMT 2024","passed","Tue Dec 17 11:14:36 GMT 2024","Академия багов","example.spec.js","",""
+"","11865","Страница зависает при смене валюты","firefox","Tue Dec 17 11:14:38 GMT 2024","passed","Tue Dec 17 11:14:50 GMT 2024","Академия багов","example.spec.js","",""
+"","1888","Изображение отображается не полностью","firefox","Tue Dec 17 11:14:36 GMT 2024","passed","Tue Dec 17 11:14:38 GMT 2024","Академия багов","example.spec.js","",""
+"","11619","Страница зависает при клике на кнопку 'Post Comment'","firefox","Tue Dec 17 11:14:53 GMT 2024","passed","Tue Dec 17 11:15:05 GMT 2024","Академия багов","example.spec.js","",""
