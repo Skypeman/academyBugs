@@ -26,6 +26,8 @@ jobs:
         
       - name: Run PW tests
         run: npx playwright test
+        env: 
+          Baseurl: ${{ vars.BASEURL }}
 
       - name: Upload PW results  
         uses: actions/upload-artifact@v4
