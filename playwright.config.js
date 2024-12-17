@@ -16,8 +16,14 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['html', { open: 'never' }], ['line']]
-    : [['html', { open: 'never' }], ['line'], ["allure-playwright", {
+    ? [['html', { open: 'never' }], ['line'], ["allure-playwright", {
+      detail: true,
+      suiteTitle: true,
+      environmentInfo: {
+        node_version: process.version,
+      }
+    }]]
+    : [['line'], ["allure-playwright", {
       detail: true,
       suiteTitle: true,
       environmentInfo: {
